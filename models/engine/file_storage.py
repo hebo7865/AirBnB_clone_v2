@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-"""My Class"""
+"""
+My Class
+"""
 import json
 from models.base_model import BaseModel
 from models.user import User
@@ -12,7 +14,8 @@ import shlex
 
 
 class FileStorage:
-    """Class serializes instances
+    """
+    Class serializes instances
 
     Attributes:
         __file_path: path to the JSON file
@@ -22,7 +25,8 @@ class FileStorage:
     __objects = {}
 
     def all(self, cls=None):
-        """returns a dict
+        """
+        returns a dict
         Return:
             returns a dict
         """
@@ -39,7 +43,8 @@ class FileStorage:
             return self.__objects
 
     def new(self, obj):
-        """sets __object
+        """
+        sets __object
         Args:
             obj: given object
         """
@@ -48,7 +53,8 @@ class FileStorage:
             self.__objects[key] = obj
 
     def save(self):
-        """serialize the file
+        """
+        serialize the file
         """
         my_dict = {}
         for key, value in self.__objects.items():
@@ -57,7 +63,8 @@ class FileStorage:
             json.dump(my_dict, f)
 
     def reload(self):
-        """serialize the file
+        """
+        serialize the file
         """
         try:
             with open(self.__file_path, 'r', encoding="UTF-8") as f:
@@ -68,13 +75,15 @@ class FileStorage:
             pass
 
     def delete(self, obj=None):
-        """ delete an element
+        """
+        delete an element
         """
         if obj:
             key = "{}.{}".format(type(obj).__name__, obj.id)
             del self.__objects[key]
 
     def close(self):
-        """ calls reload function
+        """
+        calls reload function
         """
         self.reload()
